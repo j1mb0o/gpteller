@@ -21,7 +21,7 @@ An interactive storytelling platform that combines human creativity with AI to g
 
 1. Clone the repository:
    ```bash
-   git clone [your-repository-url]
+   git clone https://github.com/j1mb0o/gpteller
    ```
 
 2. Install required dependencies:
