@@ -23,7 +23,7 @@ def decode_image(encoded_string, debug=False):
     return image
 
 
-def caption_generator(image_path):
+def caption_generator(image_path,debug=False):
     response = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
@@ -55,11 +55,13 @@ def caption_generator(image_path):
         frequency_penalty=0,
         presence_penalty=0,
     )
+    if debug:
+        with open("tests/caption_generator.txt", "w") as f:
+            f.write(response.choices[0].message.content)
     return response.choices[0].message.content
 
 
-# rint(caption_generator("dog.jpg"))
-def generate_story(caption, mood):
+def generate_story(caption, mood,debug=False):
 
     mood_dictionary = {
         "fantasy": "A high-fantasy setting inspired by works like The Lord of the Rings or The Witcher, featuring epic quests, mythical creatures, ancient magic, and richly detailed worlds.",
@@ -77,7 +79,6 @@ def generate_story(caption, mood):
         "post-apocalyptic": "A setting where civilization has collapsed due to events like nuclear war, pandemics, or environmental disaster, with themes of survival and rebuilding.",
         "noir": "A gritty and moody atmosphere with themes of crime, moral ambiguity, and shadowy characters, often set in urban environments with a vintage or retro feel.",
     }
-    # p
 
     response = client.chat.completions.create(
         model="gpt-4o-mini",
@@ -109,16 +110,18 @@ def generate_story(caption, mood):
         presence_penalty=0,
     )
 
+    if debug:
+        with open("tests/generate_story.md", "w") as f:
+            f.write(response.choices[0].message.content)
+
     return response.choices[0].message.content
 
 
 # step open summarize the story
 
 
-def summarize_story(story):
-    # from openai import OpenAI
-    # client = OpenAI()
-
+def summarize_story(story,debug=False):
+    
     response = client.chat.completions.create(
         model="gpt-4o",
         messages=[
@@ -140,25 +143,35 @@ def summarize_story(story):
         frequency_penalty=0,
         presence_penalty=0,
     )
-
+    if debug:
+        with open("tests/summarize_story.txt", "w") as f:
+            f.write(response.choices[0].message.content)
     return response.choices[0].message.content
 
-def generate_image(prompt):
-    
-    # client = OpenAI()
+def generate_image(prompt,debug=False):
 
     response = client.images.generate(
     model="dall-e-3",
-    prompt=f"{prompt}",
+    prompt=f"Do not include any text in the image. Just the image. {prompt}",
     size="1024x1024",
-    quality="standard",
-    response_format="b64_json",
-    n=1,
+        quality="standard",
+        response_format="b64_json",
+        n=1,
     )
-
+    if debug:
+        with open("tests/decoded_image.jpg", "wb") as image_file:
+            image_file.write(base64.b64decode(response.data[0].b64_json))
     # print(response)
     return response.data[0].b64_json
 
 if __name__ == "__main__":
     # print(caption_generator("dog.jpg"))
-    pass
+    print("Caption:")
+    caption = caption_generator("dog.jpg",debug=True)
+    print("Story:")
+    story = generate_story(caption,mood="adventure",debug=True)
+    print("Summary:")
+    summary = summarize_story(story,debug=True)
+    print("Image:")
+    image = generate_image(summary,debug=True)
+    
