@@ -1,0 +1,1 @@
+A golden retriever joyfully runs along an empty beach, with rolling waves and dramatic hills in the background.
