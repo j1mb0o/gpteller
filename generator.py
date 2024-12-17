@@ -23,7 +23,7 @@ def decode_image(encoded_string, debug=False):
     return image
 
 
-def caption_generator(image_path,debug=False):
+def caption_generator(image_path, debug=False):
     response = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
@@ -56,12 +56,12 @@ def caption_generator(image_path,debug=False):
         presence_penalty=0,
     )
     if debug:
-        with open("tests/caption_generator.txt", "w") as f:
+        with open("tests/caption_generator.md", "w") as f:
             f.write(response.choices[0].message.content)
     return response.choices[0].message.content
 
 
-def generate_story(caption, mood,debug=False):
+def generate_story(caption, mood, debug=False):
 
     mood_dictionary = {
         "fantasy": "A high-fantasy setting inspired by works like The Lord of the Rings or The Witcher, featuring epic quests, mythical creatures, ancient magic, and richly detailed worlds.",
@@ -120,8 +120,8 @@ def generate_story(caption, mood,debug=False):
 # step open summarize the story
 
 
-def summarize_story(story,debug=False):
-    
+def summarize_story(story, debug=False):
+
     response = client.chat.completions.create(
         model="gpt-4o",
         messages=[
@@ -130,7 +130,7 @@ def summarize_story(story,debug=False):
                 "content": [
                     {
                         "type": "text",
-                        "text": "Summarize a story concisely in less than 1000 characters.\n\n# Steps\n\n1. **Identify Key Elements**: Extract the main plot, characters, and settings relevant to the story.\n2. **Simplify the Plot**: Rewrite the essential storyline by focusing on the crucial events and their outcomes.\n3. **Highlight Themes**: Mention any overriding themes or messages that are important to the story.\n4. **Ensure Clarity**: Use clear and concise language to convey the story’s essence without losing important details.\n\n# Output Format\n\n- The summary should be one continuous paragraph.\n- Ensure the total character count does not exceed 1000 characters including spaces and punctuation.\n\n# Example\n\n**Input:** A classic tale of a determined young hero who embarks on a journey to save their kingdom from a looming threat.\n**Output:** In a medieval kingdom, a courageous young hero sets out to defeat a terrifying dragon threatening their homeland. With bravery and wit, the hero navigates through treacherous terrains, battling mythical creatures and overcoming personal fears. Guided by an ancient prophecy and a loyal companion, the hero ultimately confronts and vanquishes the dragon, restoring peace to the realm and becoming a legendary figure in the kingdom's lore. Themes of bravery, friendship, and perseverance shine throughout this epic adventure.\n\n# Notes\n\n- Focus on conveying the story’s essence and main points within the character limit.\n- Avoid unimportant subplots or minor character details that don't affect the overall understanding of the story.",
+                        "text": "Summarize a story into a concise and vivid description of less than 1000 characters, focusing on a single scene that would be most suitable for generating an image. Ensure the summary evokes visual imagery without including any text elements that identify characters or settings explicitly.\n\n# Steps\n\n1. **Identify Key Scenes**: Read the story and identify crucial scenes that are rich in visual detail and pivotal to the narrative.\n2. **Select One Scene**: Choose one scene that encapsulates significant action, emotion, or a transformative moment.\n3. **Describe the Scene**: Write a vivid description of this scene, focusing on elements that can be visually depicted, such as actions, emotions, settings, and dynamics.\n4. **Ensure Clarity and Brevity**: Keep the description under 1000 charachters, ensuring it is clear and easy to visualize.\n\n# Output Format\n\n- A descriptive summary in paragraph form, less than 1000 characters.\n- The output must exclude any textual identifiers such as character names, dialogue, or specific place names.\n\n# Examples\n\n**Example 1:**\n\n**Input:** \nA fairy tale about a princess who embarks on a dangerous journey to save her kingdom.\n\n**Output:** \nIn the heart of the enchanted forest, a gleaming castle rises under a twilight sky. Near the edge of a cascading waterfall, the princess, cloaked in emerald-green, stands defiant against the swirling mist. Her hand grips the hilt of a shimmering sword, its silver blade catching the last rays of the setting sun, while ethereal creatures hover silently, watching her every move. \n\n(The actual output should contain similar vivid imagery, yet respect the 1000-word limit and avoid explicit character or place names.)\n\n# Notes\n\n- Focus on visual-rich segments of the story for better image generation.\n- Avoid giving too much background information; instead, bring the scene to life.\n- Ensure no explicit identifiers like names or dialogues are included in the description.",
                     }
                 ],
             },
@@ -144,16 +144,17 @@ def summarize_story(story,debug=False):
         presence_penalty=0,
     )
     if debug:
-        with open("tests/summarize_story.txt", "w") as f:
+        with open("tests/summarize_story.md", "w") as f:
             f.write(response.choices[0].message.content)
     return response.choices[0].message.content
 
-def generate_image(prompt,debug=False):
+
+def generate_image(prompt, debug=False):
 
     response = client.images.generate(
-    model="dall-e-3",
-    prompt=f"Do not include any text in the image. Just the image. {prompt}",
-    size="1024x1024",
+        model="dall-e-3",
+        prompt=f"{prompt}\n\n DO NOT INCLUDE ANY TEXT IN THE IMAGE. JUST THE IMAGE.",
+        size="1024x1024",
         quality="standard",
         response_format="b64_json",
         n=1,
@@ -164,14 +165,15 @@ def generate_image(prompt,debug=False):
     # print(response)
     return response.data[0].b64_json
 
+
 if __name__ == "__main__":
     # print(caption_generator("dog.jpg"))
-    print("Caption:")
+    print("Generating Caption")
     caption = caption_generator("dog.jpg",debug=True)
-    print("Story:")
+    print("Generating Story")
     story = generate_story(caption,mood="adventure",debug=True)
-    print("Summary:")
+    print("Summarizing Story")
     summary = summarize_story(story,debug=True)
-    print("Image:")
-    image = generate_image(summary,debug=True)
-    
+    print("Generating Image")
+    # summary = """Dash, a spirited golden retriever, revels in the sunlit sands of Crestview Beach. While exploring, he uncovers a hidden map, igniting a quest to find rumored treasures in a secret cove. Emboldened, Dash races forward, overcoming obstacles: leaping over a crab blockade and skillfully slipping across a slick log bridge amidst rising tides. Reaching the cove, he encounters Finn, a clever dolphin guarding the treasure. Finn poses a riddle, "What runs but never walks, has a mouth but never talks?" Dash triumphantly answers, "A river!" Impressed, Finn reveals a chest brimming with sparkling seashells and stones. Victorious, Dash returns home, the sunset casting long shadows behind him. His heart swells with joy as the waves and wind celebrate his daring feats, leaving a trail of paw prints and a newfound tale of courage, balance, and wit at Crestview Beach. Themes of adventure, resourcefulness, and bravery pervade this joyful escapade."""
+    image = generate_image(summary, debug=True)
