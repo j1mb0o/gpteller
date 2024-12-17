@@ -68,16 +68,11 @@ def generate_story(caption, mood, debug=False):
         "science fiction": "A futuristic and imaginative setting with advanced technology, space exploration, alien encounters, and themes like artificial intelligence and intergalactic conflict.",
         "romance": "A heartfelt and emotional atmosphere centered on love and relationships, often with elements of passion, conflict, and ultimate connection.",
         "horror": "An eerie and suspenseful mood focused on fear, dread, and the supernatural, often with haunted settings, dangerous creatures, or psychological terror.",
-        "mystery": "A puzzling and intrigue-driven tone where characters uncover secrets, solve crimes, or unravel conspiracies, with suspense and unexpected twists.",
         "adventure": "An exciting and action-packed mood that involves exploration, daring feats, and encounters with challenges or enemies in exotic locales.",
         "dystopian": "A bleak and oppressive setting characterized by societal collapse, authoritarian regimes, and the struggle for survival in a harsh world.",
-        "historical": "A setting rooted in a specific historical period, with detailed attention to the culture, politics, and events of the time.",
-        "comedy": "A lighthearted and humorous tone with witty dialogue, absurd situations, and a focus on creating laughter and joy.",
         "thriller": "A tense and gripping mood filled with suspense, high stakes, and fast-paced action, often involving espionage, crime, or danger.",
-        "slice of life": "A realistic and grounded atmosphere focused on the everyday experiences, relationships, and emotions of the characters.",
         "dark fantasy": "A blend of fantasy elements with a grim and sinister tone, featuring morally ambiguous characters, dangerous magic, and foreboding settings.",
         "post-apocalyptic": "A setting where civilization has collapsed due to events like nuclear war, pandemics, or environmental disaster, with themes of survival and rebuilding.",
-        "noir": "A gritty and moody atmosphere with themes of crime, moral ambiguity, and shadowy characters, often set in urban environments with a vintage or retro feel.",
     }
 
     response = client.chat.completions.create(
