@@ -42,7 +42,8 @@ def main():
         )
         
         # Debug mode toggle
-        debug_mode = st.checkbox("Debug Mode (Skip API calls)", value=True)
+        # debug_mode = st.checkbox("Debug Mode (Skip API calls)", value=True)
+        debug_mode = False
 
     # Image upload section
     uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
