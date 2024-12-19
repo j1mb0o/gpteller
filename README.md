@@ -4,11 +4,12 @@ An interactive storytelling platform that combines human creativity with AI to g
 
 ## 🌟 Features
 
-- **Image Caption Generation**: Upload your images and get AI-generated descriptive captions that capture the essence of your visual content
-- **Mood-Based Storytelling**: Influence the narrative by selecting emotional tones (happy, mysterious, adventurous, etc.)
-- **Story Generation**: AI crafts unique stories by combining your image captions with chosen moods
-- **Image Generation**: Get AI-generated images that visually represent key moments in your story
-- **Interactive Experience**: True human-AI collaboration in the creative process
+- **Image Caption Generation**: Upload your images and get AI-generated descriptive captions
+- **Caption Editing**: Fine-tune the AI-generated captions to match your vision
+- **Genre-Based Storytelling**: Choose from various genres (Adventure, Dark fantasy, Science fiction, etc.)
+- **Story Generation**: AI crafts unique stories combining your image captions with chosen genres
+- **Image Generation**: Get AI-generated illustrations that complement your story
+- **Feedback System**: Share your experience through our integrated feedback form
 
 ## 🚀 Getting Started
 
@@ -35,46 +36,46 @@ An interactive storytelling platform that combines human creativity with AI to g
 
 ## 🎮 How to Use
 
-1. **Prepare Your Image**
-   - Select an inspiring image from your collection
-   - Ensure the image is in a supported format (JPG, PNG)
+1. **Start the Application**
+   ```bash
+   streamlit run app.py
+   ```
 
-2. **Select a Mood**
-   - Choose the emotional tone for your story
-   - Options might include: happy, mysterious, adventurous, etc.
+2. **Upload an Image**
+   - Choose an appropriate image (SFW only)
+   - Supported formats: JPG, PNG
+   - The AI will generate a caption for your image
 
-3. **Generate Story**
-   - Based on the caption and mood, the AI will create a unique story
-   - An accompanying image will be generated to match the narrative
+3. **Customize Your Story**
+   - Review and edit the generated caption if needed
+   - Select a genre from the sidebar (Adventure, Fantasy, Sci-fi, etc.)
+   - Generate your unique story and accompanying illustration
+
+4. **Share Your Experience**
+   - Provide feedback through our feedback form
+   - Help us improve the story generator
 
 ## 🛠️ Technical Stack
 
 - **Python**: Core programming language
+- **Streamlit**: Web interface
 - **OpenAI API**: 
   - GPT-4 for text generation and story creation
   - DALL-E for image generation
+- **Environment Management**: python-dotenv for API key security
 
+## ⚠️ Content Guidelines
 
-## 🤖 AI Integration
-
-This project leverages AI in multiple ways:
-- Prompt engineering was developed with GPT-4's assistance
-- Image analysis and caption generation using state-of-the-art AI models
-- Story generation incorporating both human input and AI creativity
-- Image generation based on story context
+- Only upload appropriate, Safe For Work (SFW) images
+- Prohibited content includes:
+  - Nudity or explicit content
+  - Violence or gore
+  - Abuse or harassment
+  - Drug-related content
+  - Other inappropriate material
 
 ## 🔒 Security Note
 
 - Never commit your `.env` file
 - Keep your API keys secure
 - Review the `.gitignore` file to ensure sensitive data is excluded
-
-## 📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-
-## 📧 Contact
-
-Project Link: [https://github.com/j1mb0o/gpteller](https://github.com/j1mb0o/gpteller)
-
