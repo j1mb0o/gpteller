@@ -22,7 +22,7 @@ def main():
     # Title and description
     st.title("📚 AI Interactive Story Co-Creation")
     st.markdown("Upload an image and let's create a story together!")
-
+    st.warning("⚠️ Please ensure your uploaded image is appropriate and safe for work (SFW). NSFW content is not permitted. Examples of prohibited content include: nudity, violence, gore, abuse, drugs, explicit content, or other inappropriate material.")
     # Sidebar for mood selection
     with st.sidebar:
         st.header("Story Settings")
