@@ -2,7 +2,10 @@ from openai import OpenAI
 import base64
 from PIL import Image
 from io import BytesIO
+import streamlit as st
 
+
+openai_api_key = st.secrets['openai']["OPENAI_API_KEY"]
 client = OpenAI()
 
 
