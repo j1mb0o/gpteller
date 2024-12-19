@@ -116,7 +116,7 @@ def main():
                 We'd love to hear your thoughts on the Story Generator! 
                 Please take a moment to fill out our feedback form.
             """)
-            st.markdown("[📝 Share Your Feedback](https://forms.gle/YourGoogleFormLink)", unsafe_allow_html=True)
+            st.markdown("[📝 Share Your Feedback](https://docs.google.com/forms/d/e/1FAIpQLScgAXLTfVUQyMm4EjDXYE0Kw7XdcdajKX3L4FPWeGF2X54b_A/viewform?usp=header)", unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main() 
