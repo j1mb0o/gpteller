@@ -5,7 +5,6 @@ from io import BytesIO
 import streamlit as st
 
 
-openai_api_key = st.secrets['openai']["OPENAI_API_KEY"]
 client = OpenAI()
 
 
