@@ -79,3 +79,7 @@ An interactive storytelling platform that combines human creativity with AI to g
 - Never commit your `.env` file
 - Keep your API keys secure
 - Review the `.gitignore` file to ensure sensitive data is excluded
+
+## 📚 Examples
+
+Check out our examples directory `example-results` to see sample stories and images generated.
