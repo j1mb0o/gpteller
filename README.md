@@ -58,7 +58,7 @@ An interactive storytelling platform that combines human creativity with AI to g
 ## 🛠️ Technical Stack
 
 - **Python**: Core programming language
-- **Streamlit**: Web interface
+- **Streamlit**: Front-end
 - **OpenAI API**: 
   - GPT-4 for text generation and story creation
   - DALL-E for image generation
